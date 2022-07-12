@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.form">
+            <arguments>
+                <argument xsi:type="array" name="overridden_templates">
+                    <item xsi:type="string" name="ggiftcard">SwiftOtter_GiftCard::cart/item/ggiftcard.phtml</item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="checkout.cart.item.renderers.default" >
+            <arguments>
+                <argument xsi:type="object" name="cart_item_detail" >SwiftOtter\GiftCard\ViewModel\CartDetails</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

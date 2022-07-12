@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SwiftOtter\GiftCard\Setup\Patch\Data;
 
-use SwiftOtter\GiftCard\Attributes as GiftCardAttributes;
+use SwiftOtter\GiftCard\Model\Attributes as GiftCardAttributes;
 
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -49,7 +49,7 @@ class CreateIsCustomAllowed implements DataPatchInterface
 
         $eavSetup->addAttribute(
             \Magento\Catalog\Model\Product::ENTITY,
-            Attributes::IS_CUSTOM_ALLOWED,
+            GiftCardAttributes::IS_CUSTOM_ALLOWED,
             [
                 'type' => 'int',
                 'backend' => '',
