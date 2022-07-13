@@ -1,8 +1,25 @@
 <?php
 declare(strict_types=1);
+
+use SwiftOtter\GiftCard\Model\Constants;
+
 /**
- * @var \SwiftOtter\GiftCard\ViewModel\FrontendDetails $details
+ * @var \SwiftOtter\GiftCard\ViewModel\FrontendDetails $frontendDetails
  */
-$details = $block->getData('details');
+$frontendDetails = $block->getData('details');
 ?>
-THIS TEMPLATE IZZ LOADED
+
+<?php if($frontendDetails->getIsCustomAmountAllowed()): ?>
+    <div>
+        <label for="giftcard-amount"><?= __('Giftcard Amount: ') ?></label>
+        <input name="<?= Constants::OPTION_AMOUNT ?>" id="giftcard-amount" type="text" value="<?= rand(5, 10) ?>" placeholder="<?= __('Giftcard Amount: ') ?>"/>
+    </div>
+<?php endif; ?>
+<div>
+    <label for="recipient-name"><?= __('Recipient Name: ') ?></label>
+    <input name="<?= Constants::OPTION_RECIPIENT_NAME ?>" id="recipient-name" type="text" value="Michael" placeholder="<?= __('Recipient Name: ') ?>"/>
+</div>
+<div>
+    <label for="recipient-email"><?= __('Recipient Email: ') ?></label>
+    <input name="<?= Constants::OPTION_RECIPIENT_EMAIL ?>" id="recipient-email" type="text" value="michael@gmail.com" placeholder="<?= __('Recipient Email: ') ?>"/>
+</div>
