@@ -5,4 +5,8 @@
         <observer name="swiftotter_set_gift_card_custom_price"
                   instance="SwiftOtter\GiftCard\Observer\SetGiftCardCustomPrice" />
     </event>
+    <event name="sales_order_invoice_register">
+        <observer name="SwiftOtter_RegisterGiftCard"
+                  instance="SwiftOtter\GiftCard\Observer\RegisterGiftCard" />
+    </event>
 </config>

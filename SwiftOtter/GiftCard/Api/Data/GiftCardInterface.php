@@ -9,7 +9,7 @@ interface GiftCardInterface
     /**
      * @return int
      */
-    public function getId(): int;
+    public function getId(): ?int;
 
     /**
      * @param int $id

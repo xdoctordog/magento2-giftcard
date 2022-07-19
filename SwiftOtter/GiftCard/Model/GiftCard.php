@@ -10,6 +10,12 @@ use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard as GiftCardResourceModel;
 
 class GiftCard extends AbstractModel implements GiftCardInterface
 {
+    public const STATUS_ACTIVE = 1;
+
+    public const STATUS_USED = 2;
+
+    protected $_eventPrefix = 'gift_card';
+
     protected function _construct() {
         $this->_init(GiftCardResourceModel::class);
     }
@@ -17,9 +23,9 @@ class GiftCard extends AbstractModel implements GiftCardInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
-        return (int)$this->getData('id');
+        return $this->getData('id');
     }
 
     /**

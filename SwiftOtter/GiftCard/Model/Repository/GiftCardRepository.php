@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace SwiftOtter\GiftCard\Model\Repository;
 
-use SwiftOtter\GiftCard\Api\Data\GiftCardInterface;
-use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterface;
-use SwiftOtter\GiftCard\Model\GiftCardFactory;
-use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard as GiftCardResourceModel;
-use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard\CollectionFactory as GiftCardCollectionFactory;
-use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterfaceFactory as SearchResultsFactory;
-
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use SwiftOtter\GiftCard\Api\Data\GiftCardInterface;
+use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterface;
+use SwiftOtter\GiftCard\Model\GiftCardFactory;
+use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard as GiftCardResourceModel;
+use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard\CollectionFactory as GiftCardCollectionFactory;
+//use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterfaceFactory as SearchResultsFactory;
+use Magento\Framework\Api\SearchResultsFactory as SearchResultsFactory;
 
 class GiftCardRepository
 {
@@ -35,7 +35,7 @@ class GiftCardRepository
     protected $collectionFactory;
 
     /**
-     * @var GiftCardSearchResultsInterfaceFactory
+     * @var SearchResultsFactory
      */
     protected $searchResultsFactory;
 
@@ -44,20 +44,11 @@ class GiftCardRepository
      */
     private $collectionProcessor;
 
-    /**
-     * GiftCardRepository constructor.
-     *
-     * @param GiftCardResourceModel $resource
-     * @param GiftCardFactory $giftCardFactory
-     * @param GiftCardCollectionFactory $giftCardCollectionFactory
-     * @param GiftCardSearchResultsInterfaceFactory $searchResultsFactory
-     * @param CollectionProcessorInterface $collectionProcessor
-     */
     public function __construct(
         GiftCardResourceModel $resource,
         GiftCardFactory $giftCardFactory,
         GiftCardCollectionFactory $giftCardCollectionFactory,
-        GiftCardSearchResultsInterfaceFactory $searchResultsFactory,
+        SearchResultsFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
     ) {
         $this->resource = $resource;

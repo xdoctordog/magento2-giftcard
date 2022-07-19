@@ -22,11 +22,6 @@ class CartDetails implements ArgumentInterface
             $quoteItem->getOptionByCode($value)->getValue() : '';
         }, $codes);
 
-//        $output  = [
-//            (string)__('Recipient name') => $name,
-//            (string)__('Recipient email') => $email,
-//        ];
-
         return array_filter($output);
     }
 }

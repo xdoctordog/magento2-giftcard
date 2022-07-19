@@ -9,6 +9,8 @@ use SwiftOtter\GiftCard\Api\Data\GiftCardUsageInterface;
 
 class GiftCardUsage extends AbstractModel implements GiftCardUsageInterface
 {
+    protected $_eventPrefix = 'gift_card_usage';
+    
     /**
      * @return int
      */
