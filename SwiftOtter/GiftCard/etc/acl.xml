@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+<acl>
+    <resources>
+        <resource id="Magento_Backend::admin">
+            <resource id="SwiftOtter_GiftCard::management" title="SwiftOtter Gift Card" sortOrder="10" >
+                <resource id="SwiftOtter_GiftCard::create" title="Create On Frontend" sortOrder="50" translate="title" />
+            </resource>
+        </resource>
+    </resources>
+</acl>
+</config>

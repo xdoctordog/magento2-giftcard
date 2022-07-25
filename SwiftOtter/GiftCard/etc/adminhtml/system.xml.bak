@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="giftcard"
+                   translate="label"
+                   type="text"
+                   sorOrder="98"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="0"
+            >
+                <label>Gift Card</label>
+                <field id="enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="90"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0"
+                       canRestore="1"
+                >
+                    <label>Enabled</label>
+                    <comment>Ensure Gift Card module is enabled on frontend.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

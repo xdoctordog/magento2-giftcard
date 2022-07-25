@@ -20,4 +20,20 @@
     <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
         <plugin name="SwiftOtter_MoveQuoteItemOptionsToOrderItem" type="SwiftOtter\GiftCard\Plugin\MoveQuoteItemOptionsToOrderItem" />
     </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="giftcard_listing_data_source" xsi:type="string">SwiftOtter\GiftCard\Model\ResourceModel\GiftCard\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="SwiftOtter\GiftCard\Model\ResourceModel\GiftCard\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">gift_card</argument>
+            <argument name="resourceModel" xsi:type="string">SwiftOtter\GiftCard\Model\ResourceModel\GiftCard</argument>
+        </arguments>
+    </virtualType>
 </config>

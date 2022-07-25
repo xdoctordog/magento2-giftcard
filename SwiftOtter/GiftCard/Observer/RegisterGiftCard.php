@@ -139,7 +139,8 @@ class RegisterGiftCard implements ObserverInterface
         $giftCard->setRecipientEmail((string)$recipientEmail);
         $giftCard->setCode($this->codeGenerator->getNewCode());
         $giftCard->setStatus(GiftCardModel::STATUS_ACTIVE);
-        $giftCard->save();
+
+        $this->giftCardRepository->save($giftCard);
     }
 
     private function getProduct(int $productId): ProductInterface
