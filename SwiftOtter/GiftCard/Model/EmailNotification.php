@@ -22,7 +22,7 @@ use SwiftOtter\GiftCard\Api\Data\GiftCardInterface;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class EmailNotification implements EmailNotificationInterface
+class EmailNotification
 {
     /**#@+
      * Configuration paths for email templates and identities
