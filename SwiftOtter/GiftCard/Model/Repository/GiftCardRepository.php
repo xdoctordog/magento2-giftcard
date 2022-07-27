@@ -9,13 +9,15 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchResultsFactory as SearchResultsFactory;
+
+use SwiftOtter\GiftCard\Model\EmailNotification;
 use SwiftOtter\GiftCard\Api\Data\GiftCardInterface;
 use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterface;
 use SwiftOtter\GiftCard\Model\GiftCardFactory;
 use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard as GiftCardResourceModel;
 use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard\CollectionFactory as GiftCardCollectionFactory;
 //use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterfaceFactory as SearchResultsFactory;
-use Magento\Framework\Api\SearchResultsFactory as SearchResultsFactory;
 
 class GiftCardRepository
 {
@@ -44,18 +46,25 @@ class GiftCardRepository
      */
     private $collectionProcessor;
 
+    /**
+     * @var EmailNotification
+     */
+    private $emailNotification;
+
     public function __construct(
         GiftCardResourceModel $resource,
         GiftCardFactory $giftCardFactory,
         GiftCardCollectionFactory $giftCardCollectionFactory,
         SearchResultsFactory $searchResultsFactory,
-        CollectionProcessorInterface $collectionProcessor
+        CollectionProcessorInterface $collectionProcessor,
+        EmailNotification $emailNotification
     ) {
         $this->resource = $resource;
         $this->modelFactory = $giftCardFactory;
         $this->collectionFactory = $giftCardCollectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
         $this->collectionProcessor = $collectionProcessor;
+        $this->emailNotification = $emailNotification;
     }
 
     /**
@@ -64,10 +73,17 @@ class GiftCardRepository
      * @return GiftCardInterface
      * @throws CouldNotSaveException
      */
-    public function save(GiftCardInterface $giftCard)
+    public function save(GiftCardInterface $giftCard, ?int $storeId = null)
     {
         try {
             $this->resource->save($giftCard);
+
+            $canNotify = !(int)$giftCard->getId();
+
+            if($canNotify) {
+                $this->emailNotification->sendEmailTemplate($giftCard, $storeId);
+            }
+
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
@@ -84,7 +100,7 @@ class GiftCardRepository
      */
     public function getById(int $giftCardId): GiftCardInterface
     {
-        $giftCard = $this->blockFactory->create();
+        $giftCard = $this->modelFactory->create();
         $this->resource->load($giftCard, $giftCardId);
         if (!$giftCard->getId()) {
             throw new NoSuchEntityException(__('The gift card with the "%1" ID doesn\'t exist.', $giftCardId));
@@ -102,7 +118,7 @@ class GiftCardRepository
      */
     public function getByCode(string $code)
     {
-        $giftCard = $this->blockFactory->create();
+        $giftCard = $this->modelFactory->create();
         $this->resource->load($giftCard, $code, 'code');
         if (!$giftCard->getId()) {
             throw new NoSuchEntityException(__('The gift card with the code "%1" doesn\'t exist.', $code));

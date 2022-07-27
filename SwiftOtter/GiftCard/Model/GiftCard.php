@@ -25,7 +25,7 @@ class GiftCard extends AbstractModel implements GiftCardInterface
      */
     public function getId(): ?int
     {
-        return $this->getData('id');
+        return $this->getData('id') ? (int)$this->getData('id') : null;
     }
 
     /**

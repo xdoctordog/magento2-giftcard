@@ -6,7 +6,7 @@
             <group id="giftcard"
                    translate="label"
                    type="text"
-                   sorOrder="98"
+                   sorOrder="90"
                    showInDefault="1"
                    showInWebsite="1"
                    showInStore="0"
@@ -15,15 +15,27 @@
                 <field id="enabled"
                        translate="label comment"
                        type="select"
-                       sortOrder="90"
+                       sortOrder="1"
                        showInDefault="1"
                        showInWebsite="1"
                        showInStore="0"
-                       canRestore="1"
                 >
                     <label>Enabled</label>
                     <comment>Ensure Gift Card module is enabled on frontend.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+
+                <field id="email_identity" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+
+                <field id="email_template" translate="label comment" type="select" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Giftcard announcement</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
             </group>
         </section>

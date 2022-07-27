@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SwiftOtter\GiftCard\Controller\Adminhtml\View;
+namespace SwiftOtter\GiftCard\Controller\Adminhtml\Edit;
 
+use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\App\ResponseInterface;
-use SwiftOtter\GiftCard\Controller\Adminhtml\GiftCardAbstract;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends GiftCardAbstract implements HttpGetActionInterface
+class Index extends BackendAction implements HttpGetActionInterface
 {
     /**
      * @var PageFactory

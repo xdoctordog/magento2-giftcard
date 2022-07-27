@@ -26,7 +26,7 @@
             <updateUrl path="mui/index/render"/>
         </settings>
         <aclResource>SwiftOtter_GiftCard::management</aclResource>
-        <dataProvider class="Magento\Cms\Ui\Component\DataProvider" name="giftcard_listing_data_source">
+        <dataProvider class="SwiftOtter\GiftCard\Ui\Component\DataProvider" name="giftcard_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>id</primaryFieldName>
