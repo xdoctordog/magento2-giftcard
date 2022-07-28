@@ -6,25 +6,19 @@
                 comment="ID"/>
         <column xsi:type="int" name="assigned_customer_id" padding="10" unsigned="true" nullable="true" comment="Assigned customer ID"/>
         <column xsi:type="varchar" name="code" length="255" nullable="false" comment="Code"/>
-
         <column xsi:type="int" name="status" unsigned="true" nullable="false" comment="Status"/>
-
         <column xsi:type="decimal" name="initial_value" scale="6" precision="20" unsigned="false" nullable="true"
                 comment="Initial value"/>
         <column xsi:type="decimal" name="current_value" scale="6" precision="20" unsigned="false" nullable="true"
                 comment="Current value"/>
-
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated at"/>
-
-
         <column xsi:type="varchar" name="recipient_email" length="255" nullable="false" comment="Recipient email"/>
         <column xsi:type="varchar" name="recipient_name" length="255" nullable="false" comment="Recipient name"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
-
         <constraint xsi:type="foreign" referenceId="GFTCRD_ASSGNDCSTMRID_CSTMRENTID"
                     table="gift_card" column="assigned_customer_id"
                     referenceTable="customer_entity" referenceColumn="entity_id"
@@ -33,15 +27,11 @@
     <table name="gift_card_usage" resource="default" engine="innodb"
            comment="Gift Card Usage Table">
         <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
-
         <column xsi:type="int" name="gift_card_id" padding="10" unsigned="true" nullable="false" comment="Gift card ID"/>
-
         <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" comment="Order id"/>
-
         <column xsi:type="decimal" name="value_change" scale="6" precision="20" unsigned="true" nullable="true"
                 comment="Value change"/>
         <column xsi:type="text" name="notes" nullable="false" comment="Text"/>
-
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created at"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
@@ -55,6 +45,30 @@
         <constraint xsi:type="foreign" referenceId="GFTCRDUSG_ORDRID_SLSORDR_ENTTID"
                     table="gift_card_usage " column="order_id"
                     referenceTable="sales_order" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+    </table>
+
+    <table name="gift_card_quote" resource="default" engine="innodb"
+           comment="Gift Card To Quote">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="int" name="gift_card_id" padding="10" unsigned="true" nullable="false"
+                comment="Gift card ID"/>
+        <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false"
+                comment="Quote ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="GIFTCARD_QUOTE_GIFTCARD_ID_GIFTCARD_ID"
+                    table="gift_card_quote" column="gift_card_id"
+                    referenceTable="gift_card" referenceColumn="id"
+                    onDelete="CASCADE"/>
+
+        <constraint xsi:type="foreign" referenceId="GIFTCARD_QUOTE_QUOTE_ID_QUOTE_ENTITY_ID"
+                    table="gift_card_quote" column="quote_id"
+                    referenceTable="quote" referenceColumn="entity_id"
                     onDelete="CASCADE"/>
     </table>
 </schema>

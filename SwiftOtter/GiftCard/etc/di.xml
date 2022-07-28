@@ -36,4 +36,14 @@
             <argument name="resourceModel" xsi:type="string">SwiftOtter\GiftCard\Model\ResourceModel\GiftCard</argument>
         </arguments>
     </virtualType>
+
+    <type name="Magento\Quote\Model\QuoteFactory">
+        <plugin name="SwiftOtter_EnsureQuoteExtensionAttributesExists" type="SwiftOtter\GiftCard\Plugin\EnsureQuoteExtensionAttributesExists" />
+    </type>
+
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="SwiftOtter_AssignGiftCardIdToQuote" type="SwiftOtter\GiftCard\Plugin\AssignGiftCardIdToQuote" />
+    </type>
+
+    <preference for="SwiftOtter\GiftCard\Api\GiftCardRetrieverInterface" type="SwiftOtter\GiftCard\Model\Endpoint\Service\GiftCardRetriever" />
 </config>
