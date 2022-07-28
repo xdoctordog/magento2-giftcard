@@ -9,6 +9,8 @@ define([
     'Magento_Checkout/js/model/payment-service',
     'Magento_Checkout/js/model/payment/method-converter',
     'Magento_Checkout/js/model/error-processor',
+    'Magento_Checkout/js/model/full-screen-loader',
+    'mage/storage'
 ], function (
     ko,
     totals,
@@ -18,7 +20,9 @@ define([
     resourceUrlManager,
     paymentService,
     methodConverter,
-    errorProcessor
+    errorProcessor,
+    fullScreenLoader,
+    storage
 ) {
     'use strict';
 

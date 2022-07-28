@@ -16,11 +16,11 @@ define([
                         quoteId: quote.getQuoteId()
                     } : {},
                     urls = {
-                        'guest': '/guest-carts/:cartId/gift-card'
+                        'guest': '/guest-carts/:cartId/gift-card',
                         'customer': '/carts/mine/gift-card'
                     };
 
-                return this.getUrl(urls, params);
+                return urlManager.getUrl(urls, params);
             },
         };
     }
