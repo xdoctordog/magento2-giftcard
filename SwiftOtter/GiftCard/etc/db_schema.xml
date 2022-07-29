@@ -71,4 +71,18 @@
                     referenceTable="quote" referenceColumn="entity_id"
                     onDelete="CASCADE"/>
     </table>
+
+    <table name="quote">
+        <column xsi:type="decimal" name="gift_card_amount" scale="6" precision="20" unsigned="false" nullable="true"
+                comment="Gift Card Amount"/>
+        <column xsi:type="decimal" name="base_gift_card_amount" scale="6" precision="20" unsigned="false" nullable="true"
+                comment="Base Gift Card Amount"/>
+    </table>
+
+    <table name="quote_address">
+        <column xsi:type="decimal" name="gift_card_amount" scale="6" precision="20" unsigned="false" nullable="true"
+                comment="Gift Card Amount"/>
+        <column xsi:type="decimal" name="base_gift_card_amount" scale="6" precision="20" unsigned="false" nullable="true"
+                comment="Base Gift Card Amount"/>
+    </table>
 </schema>

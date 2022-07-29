@@ -16,7 +16,7 @@ define([
                         quoteId: quote.getQuoteId()
                     } : {},
                     urls = {
-                        'guest': '/guest-carts/:cartId/gift-card',
+                        'guest': '/guest-carts/:quoteId/gift-card',
                         'customer': '/carts/mine/gift-card'
                     };
 

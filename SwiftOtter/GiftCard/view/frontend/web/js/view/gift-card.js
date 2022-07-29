@@ -45,6 +45,12 @@ define([
             this._super();
         },
 
+        delete: function() {
+          this.code = '';
+          this.isApplied = false;
+          this.update();
+        },
+
         update: function () {
 
             fullScreenLoader.startLoader();

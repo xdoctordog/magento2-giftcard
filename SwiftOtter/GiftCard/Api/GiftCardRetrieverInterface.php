@@ -9,12 +9,12 @@ use Magento\Checkout\Api\Data\PaymentDetailsInterface;
 interface GiftCardRetrieverInterface
 {
     /**
-     * @param string $cartId
+     * @param string $maskedId
      * @param string $giftCardCode
      *
      * @return \Magento\Checkout\Api\Data\PaymentDetailsInterface
      */
-    public function applyGuest(string $cartId, string $giftCardCode): PaymentDetailsInterface;
+    public function applyGuest(string $maskedId, string $giftCardCode): PaymentDetailsInterface;
 
     /**
      * @param int $cartId

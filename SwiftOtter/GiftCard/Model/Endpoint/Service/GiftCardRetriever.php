@@ -73,15 +73,16 @@ class GiftCardRetriever implements GiftCardRetrieverInterface
         $this->cartTotalsRepository = $cartTotalsRepository;
     }
 
-    public function applyGuest(string $cartId, string $giftCardCode): PaymentDetailsInterface
+    public function applyGuest(string $maskedId, string $giftCardCode): PaymentDetailsInterface
     {
         /** @var QuoteIdMask $quoteIdMask **/
-        $quoteIdMask = $this->quoteIdMaskFactory->create()->load($cartId, 'masked_id');
+        $quoteIdMask = $this->quoteIdMaskFactory->create()->load($maskedId, 'masked_id');
+        $quoteId = (int)$quoteIdMask->getQuoteId();
 
-        return $this->applyCustomer((int)$quoteIdMask->getQuoteId(), $giftCardCode);
+        return $this->applyCustomer($quoteId, $giftCardCode);
     }
 
-    public function applyCustomer(int $cartId, string $giftCardCode): PaymentDetailsInterface
+    public function applyCustomer(int $quoteId, string $giftCardCode): PaymentDetailsInterface
     {
         $giftCard = $this->giftCardRepository->getByCode($giftCardCode);
 
@@ -91,15 +92,15 @@ class GiftCardRetriever implements GiftCardRetrieverInterface
             throw new StateException(__('This gift card has already been used. Please choose another one.'));
         }
 
-        $cart = $this->cartRepository->get($cartId);
+        $cart = $this->cartRepository->get($quoteId);
         $cart->getExtensionAttributes()->setGiftCardId($giftCard->getId());
 
         $this->cartRepository->save($cart);
 
         /** @var PaymentDetailsInterface $paymentDetails */
         $paymentDetails = $this->paymentDetailsFactory->create();
-        $paymentDetails->setPaymentMethods($this->paymentMethodManagement->getList($cartId));
-        $paymentDetails->setTotals($this->cartTotalsRepository->get($cartId));
+        $paymentDetails->setPaymentMethods($this->paymentMethodManagement->getList($quoteId));
+        $paymentDetails->setTotals($this->cartTotalsRepository->get($quoteId));
         return $paymentDetails;
     }
 }

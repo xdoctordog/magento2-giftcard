@@ -14,4 +14,5 @@ class Constants
         self::OPTION_RECIPIENT_EMAIL,
         self::OPTION_RECIPIENT_NAME
     ];
+    const TOTAL_NAME = 'total';
 }
