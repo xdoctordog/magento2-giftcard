@@ -46,4 +46,13 @@
     </type>
 
     <preference for="SwiftOtter\GiftCard\Api\GiftCardRetrieverInterface" type="SwiftOtter\GiftCard\Model\Endpoint\Service\GiftCardRetriever" />
+    <preference for="SwiftOtter\GiftCard\Api\GiftCardRepositoryInterface" type="SwiftOtter\GiftCard\Model\Repository\GiftCardRepository" />
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="swiftotter_giftcard_import" xsi:type="object">SwiftOtter\GiftCard\Console\Command\ImportGiftCards</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

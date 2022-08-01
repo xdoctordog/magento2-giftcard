@@ -1,0 +1,24 @@
+<?php
+
+use SwiftOtter\GiftCard\Api\Data\GiftCardInterface;
+
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+
+/** @var \SwiftOtter\GiftCard\ViewModel\Frontend\View $viewModel **/
+$viewModel = $block->getData('view.model');
+?>
+<ul>
+    <?php $giftCards = $viewModel->getGiftCards(); ?>
+    <?php if(count($giftCards)): ?>
+        <?php /** @var GiftCardInterface $giftCard **/ ?>
+        <?php foreach($giftCards as $giftCard): ?>
+            <a href="<?= $block->escapeUrl('details/index/id/') ?><?= $block->escapeUrl($giftCard->getId()) ?>">
+                <li><?= $giftCard->getCode() ?></li>
+            </a>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <?= __('There are no gift cards associated to your account.') ?>
+    <?php endif; ?>
+</ul>

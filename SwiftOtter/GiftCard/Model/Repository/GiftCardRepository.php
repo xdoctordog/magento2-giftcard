@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace SwiftOtter\GiftCard\Model\Repository;
 
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchResultsFactory as SearchResultsFactory;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
-use SwiftOtter\GiftCard\Model\EmailNotification;
 use SwiftOtter\GiftCard\Api\Data\GiftCardInterface;
 use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterface;
+use SwiftOtter\GiftCard\Api\GiftCardRepositoryInterface;
+use SwiftOtter\GiftCard\Model\EmailNotification;
 use SwiftOtter\GiftCard\Model\GiftCardFactory;
 use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard as GiftCardResourceModel;
 use SwiftOtter\GiftCard\Model\ResourceModel\GiftCard\CollectionFactory as GiftCardCollectionFactory;
 //use SwiftOtter\GiftCard\Api\Data\GiftCardSearchResultsInterfaceFactory as SearchResultsFactory;
 
-class GiftCardRepository
+class GiftCardRepository implements GiftCardRepositoryInterface
 {
     /**
      * @var GiftCardResourceModel
